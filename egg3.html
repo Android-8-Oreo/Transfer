@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Google</title>
+    <link rel="icon" href="https://www.google.com/favicon.ico" type="image/x-icon">
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(-45deg, #000000, #4b0082);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+      }
+
+      @keyframes gradientBG {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .container {
+	display :flex; 
+	align-items :center; 
+	justify-content :center; 
+	flex-direction :column; 
+	height :100vh
+      }
+
+      .button {
+	font-size :large; 
+	padding-top :5px; 
+	padding-bottom :5px; 
+	padding-left :10px; 
+	padding-right :10px; 
+	background-color:#696969; 
+	color:#7289da; 
+	border-radius :5px; 
+	cursor:pointer
+      }
+
+      .inputBox{
+	margin-bottom :20px;
+	background-color:black;
+	color:white;
+	border-radius:5px;
+	border:none;
+	outline:none;
+	padding-left:10px;
+	animation:borderRotate infinite linear;
+
+	--borderWidth:16px;
+
+	box-shadow:
+	inset var(--borderWidth) var(--borderWidth) transparent,
+	inset calc(var(--borderWidth)*-1) calc(var(--borderWidth)*-1) transparent,
+	inset var(--borderWidth) calc(var(--borderWidth)*-1) transparent,
+	inset calc(var(--borderWidth)*-1) var(--borderWidth) transparent;
+
+	animation:borderRotate infinite linear;
+
+	--duration:.5s;
+
+	animation-duration:
+	calc(var(--duration)*4),
+	calc(var(--duration)*4),
+	calc(var(--duration)*4),
+	calc(var(--duration)*4);
+
+	animation-delay:
+	calc(0*var(--duration)),
+	calc(1*var(--duration)),
+	calc(2*var(--duration)),
+	calc(3*var(--duration));
+
+	animation-timing-function:
+	steps(1,start),
+	steps(1,start),
+	steps(1,start),
+	steps(1,start);
+}
+
+@keyframes borderRotate{
+	to{transform:rotate(-360deg)}
+}
+
+.inputBox::before{
+	content:'';
+	position:absolute;
+	top:-3.5px;left:-3.5px;
+	right:-3.5px;bottom:-3.5px;
+
+	z-index:-2;
+
+	border-radius:inherit;
+
+	background-image:
+	linear-gradient(to right,#ff0000,#ffff00,#00ff00,#00ffff,#0000ff,#ff00ff,#ff0000);
+
+	mask-image:
+	radial-gradient(farthest-side at center,var(#fff,.8),transparent);
+
+	mask-size:auto auto;
+
+	mask-repeat:no-repeat;
+
+	mask-position:center center;
+
+	animation:borderRotate infinite linear reverse .8s
+}
+
+h1 {
+	font-size: xx-large;
+	color:white;
+	text-align:center;
+	margin-top:20vh
+}
+
+h1 span:nth-child(n){
+animation-name:fadingColorAnimation ;
+animation-duration:.8s ;
+animation-timing-function:cubic-bezier(.25,.46,.45,.94);
+animation-fill-mode:both ;
+animation-delay:.2s ;
+animation-iteration-count:infinite ;
+display:inline-block
+}
+
+@keyframes fadingColorAnimation{
+	from{color:#fff}
+	to{color:#f00}
+}
+    </style>
+    
+</head>
+
+<body>
+
+<h1><span>U</span><span>n</span><span>b</span><span>l</span><span>o</span><span>c</span><span>k</span><
