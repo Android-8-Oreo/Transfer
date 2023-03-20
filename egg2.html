@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Embed URL in about:blank page</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(-45deg, #000000, #4b0082);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+      }
+
+      @keyframes gradientBG {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .container {
+	display :flex; 
+	align-items :center; 
+	justify-content :center; 
+	flex-direction :column; 
+	height :100vh
+      }
+
+      .button {
+	font-size :xx-large; 
+	padding-top :10px; 
+	padding-bottom :10px; 
+	padding-left :20px; 
+	padding-right :20px; 
+	background-color:#696969; 
+	color:#7289da; 
+	border-radius :5px; 
+	cursor:pointer
+      }
+
+      .inputBox{
+	margin-bottom :20px;
+	background-color:black;
+	color:white;
+	border-radius:5px;
+	border:none;
+	outline:none;
+	padding-left:10px;
+	animation:borderRotate infinite linear;
+
+	--borderWidth:3px;
+
+	box-shadow:
+	inset var(--borderWidth) var(--borderWidth) transparent,
+	inset calc(var(--borderWidth)*-1) calc(var(--borderWidth)*-1) transparent,
+	inset var(--borderWidth) calc(var(--borderWidth)*-1) transparent,
+	inset calc(var(--borderWidth)*-1) var(--borderWidth) transparent;
+
+	animation:borderRotate infinite linear;
+
+	--duration:.5s;
+
+	animation-duration:
+	calc(var(--duration)*4),
+	calc(var(--duration)*4),
+	calc(var(--duration)*4),
+	calc(var(--duration)*4);
+
+	animation-delay:
+	calc(0*var(--duration)),
+	calc(1*var(--duration)),
+	calc(2*var(--duration)),
+	calc(3*var(--duration));
+
+	animation-timing-function:
+	steps(1,start),
+	steps(1,start),
+	steps(1,start),
+	steps(1,start);
+}
+
+@keyframes borderRotate{
+	to{transform:rotate(-360deg)}
+}
+
+.inputBox::before{
+	content:'';
+	position:absolute;
+	top:-3.5px;left:-3.5px;
+	right:-3.5px;bottom:-3.5px;
+
+	z-index:-2;
+
+	border-radius:inherit;
+
+	background-image:
+	linear-gradient(to right,#ff0000,#ffff00,#00ff00,#00ffff,#0000ff,#ff00ff,#ff0000);
+
+	mask-image:
+	radial-gradient(farthest-side at center,var(#fff,.8),transparent);
+
+	mask-size:auto auto;
+
+	mask-repeat:no-repeat;
+
+	mask-position:center center;
+
+	animation:borderRotate infinite linear reverse .8s
+}
+    </style>
+    
+</head>
+
+<body>
+
+<div class="container">
+<input class="inputBox" type="text" id="urlInput" placeholder="Enter URL here">
+<button class="button" onclick="openURL()">Open</button>
+
+<script>
+function openURL() {
+var url = document.getElementById("urlInput").value.trim();
+if (!url.startsWith('http://') && !url.startsWith('https://')) url = 'https://' + url
+win = window.open();
+win.document.body.style.margin = "0";
+win.document.body.style.height = "100vh";
+var iframe = win.document.createElement("iframe");
+iframe.style.border = "none";
+iframe.style.width = "100%";
+iframe.style.height = "100%";
+iframe.style.margin = "0";
+iframe.referrerpolicy = "no-referrer";
+iframe.allow = "fullscreen";
+iframe.src = url.toString();
+win.document.body.appendChild(iframe);
+}
+
+document.getElementById("urlInput").addEventListener("keyup", function(event) {
+if (event.keyCode === 13) { // keyCode for Enter key is `13`
+event.preventDefault();
+openURL();
+}
+});
+</script>
+
+</div>
+
+</body>
+
+</html>
